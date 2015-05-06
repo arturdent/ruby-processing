@@ -14,13 +14,13 @@ We assume you have some version of ruby installed if not, there is a [guide to i
 
 MacOSX users please try out this new  [method](https://github.com/jashkenas/ruby-processing/wiki/Installing-ruby-processing-on-the-mac) or see this [japanese][] guide.
 
-Ideally you should install [jruby](http://jruby.org/download), at the very least you will have at least ruby-1.9.3 installed.  You should [download][] and install vanilla [processing-2.2.1](https://processing.org/download/) prior to installing this version of ruby-processing. You must also set the `PROCESSING_ROOT` in the .rp5rc yaml configuration file, the easiest way to do this is by running the [SetProcessingRoot.pde](https://gist.github.com/monkstone/7438749) sketch in the processing ide. 
+Ideally you should install [jruby](http://jruby.org/download), at the very least you will have at least ruby-2.1 installed.  You should [download][] and install vanilla [processing-2.2.1](https://processing.org/download/) prior to installing this version of ruby-processing. You must also set the `PROCESSING_ROOT` in the .rp5rc yaml configuration file, the easiest way to do this is by running the [SetProcessingRoot.pde](https://gist.github.com/monkstone/7438749) sketch in the processing ide. 
 
 Then install ruby-processing (from rubygems-org) in the usual way
 
 `gem install ruby-processing` some systems eg Ubuntu may require `sudo` access
 
-To install jruby-complete use our built in tool (relies on `wget` to download [jruby-complete-1.7.20](http://jruby.org/download))
+To install jruby-complete use our built in tool (relies on `wget` to download [jruby-complete-9.0.0.0.pre2](http://jruby.org/download))
 
 since ruby-processing-2.5.0 `rp5 setup install` (was `install_jruby_complete`)
 
@@ -105,14 +105,10 @@ NB: you can't use jdk/jre installed by processing
 
 This gem has been tested with the following ruby implementations
 
-* Ruby 1.9.3
-* Ruby 2.0.0
-* Ruby 2.1.2
 * Ruby 2.2.1
 * [JRuby][] preferred (required to use rubygems in sketches)
 
-NB: current support for ruby-2.0 syntax is limited (and experimental see jruby documentation).
-However if you use JRuby-9.0.0.0.pre2 you will find ruby-2.2 syntax is now supported (try jruby-9000-pre branch). Future development of ruby-processing will target ruby-2.2 (with probable backward compatibitility with MRI ruby-2.1) any further backward compability will be accidental and unsupported (owing to limited resources).
+JRuby-9.0.0.0.pre2 provides ruby-2.2 syntax. Future development of ruby-processing will target ruby-2.2 (with probable backward compatibitility with MRI ruby-2.1) any further backward compability will be accidental and unsupported (owing to limited resources).
 
 ### Supported processing version
 
