@@ -1,3 +1,3 @@
 module RubyProcessing
-  VERSION = '2.7.0.pre'
+  VERSION = '2.7.1.pre'
 end

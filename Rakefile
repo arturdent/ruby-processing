@@ -1,3 +1,4 @@
+Dir.glob('tasks/**/*.rake').each(&method(:import))
 
 desc 'build and test'    
 task :default => [:build_and_test]

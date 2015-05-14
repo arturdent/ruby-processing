@@ -28,16 +28,11 @@ module Processing
 
   # Watch the definition of these methods, to make sure
   # that Processing is able to call them during events.
-  METHODS_TO_ALIAS ||= {
-    mouse_pressed: :mousePressed,
-    mouse_dragged: :mouseDragged,
-    mouse_clicked: :mouseClicked,
-    mouse_moved: :mouseMoved,
-    mouse_released: :mouseReleased,
-    key_pressed: :keyPressed,
-    key_released: :keyReleased,
-    key_typed: :keyTyped
-  }
+  aliases = %i(mouse_pressed mouse_dragged mouse_clicked mouse_moved
+               mouse_released key_pressed key_released key_typed)
+  methods = %i(MousePressed MouseDragged MouseClicked MouseMoved
+               MouseReleased KeyPressed KeyReleased KeyTyped)
+  METHODS_TO_ALIAS ||= aliases.zip(methods).to_h
   # All sketches extend this class
   class App < PApplet
     include Math
@@ -179,8 +174,8 @@ module Processing
         args << '--full-screen'
         args << "--bgcolor=#{options[:bgcolor]}" if options[:bgcolor]
       end
-      xc = Processing::RP_CONFIG['X_OFF'] ||= 0
-      yc = Processing::RP_CONFIG['Y_OFF'] ||= 0
+      xc = Processing::RP_CONFIG.fetch('X_OFF', 0)
+      yc = Processing::RP_CONFIG.fetch('Y_OFF', 0)
       x = options.fetch(:x, xc)
       y = options.fetch(:y, yc)
       args << "--location=#{x},#{y}"  # important no spaces here

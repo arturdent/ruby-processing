@@ -106,15 +106,15 @@ module Processing
       format(BASIC_MODE, @width, @height, @mode)
     end
 
-    def create!(path, args)
-      return usage if /\?/ =~ path || /--help/ =~ path
+    def create!(name: '--help', width: 200, height: 200, mode: nil)
+      return usage if /\?/ =~ name || /--help/ =~ name
       # Check to make sure that the main file doesn't exist already
-      already_exist(path)
-      main_file = File.basename(path, '.rb') # allow uneeded extension input
+      already_exist(name)
+      main_file = File.basename(name, '.rb') # allow uneeded extension input
       writer = SketchWriter.new(main_file)
-      @width = args[0]
-      @height = args[1]
-      @mode = args[2].upcase unless args[2].nil?
+      @width = width
+      @height = height
+      @mode = mode.upcase unless mode.nil?
       template = @mode.nil? ? basic_template : basic_template_mode
       writer.save(template)
     end
@@ -130,16 +130,16 @@ module Processing
       format(CLASS_MODE, @name, @width, @height, @mode)
     end
     # Create a class wrapped sketch, given a path.
-    def create!(path, args)
-      return usage if /\?/ =~ path || /--help/ =~ path
-      main_file = File.basename(path, '.rb') # allow uneeded extension input
+    def create!(name: '--help', width: 200, height: 200, mode: nil)
+     return usage if /\?/ =~ name || /--help/ =~ name
+      main_file = File.basename(name, '.rb') # allow uneeded extension input
       # Check to make sure that the main file doesn't exist already
-      already_exist(path)
+      already_exist(name)
       @name = CamelString.new(main_file).camelize
       writer = SketchWriter.new(main_file)
       @title = StringExtra.new(main_file).titleize
-      @width, @height = args[0], args[1]
-      @mode = args[2].upcase unless args[2].nil?
+      @width, @height = width, height
+      @mode = mode.upcase unless mode.nil?
       template = @mode.nil? ? class_template : class_template_mode
       writer.save(template)
     end
@@ -151,11 +151,11 @@ module Processing
       format(INNER, @name)
     end
     # Create a pseudo inner class, given a path.
-    def create!(path, _args_)
-      return usage if /\?/ =~ path || /--help/ =~ path
-      main_file = File.basename(path, '.rb') # allow uneeded extension input
+    def create!(name: '--help')
+      return usage if /\?/ =~ name || /--help/ =~ name
+      main_file = File.basename(name, '.rb') # allow uneeded extension input
       # Check to make sure that the main file doesn't exist already
-      already_exist(path)
+      already_exist(name)
       @name = main_file.camelize
       writer = SketchWriter.new(main_file)
       template = inner_class_template

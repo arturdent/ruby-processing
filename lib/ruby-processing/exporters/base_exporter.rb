@@ -8,9 +8,9 @@ module Processing
   # code-munging needed to generate apps/ blank sketches.
   class BaseExporter
     include FileUtils
-    DEFAULT_DIMENSIONS = { 'width' => '100', 'height' => '100' }
+    DEFAULT_DIMENSIONS = { width: '100', height: '100' }
     DEFAULT_DESCRIPTION = ''
-    NECESSARY_FOLDERS = %w(data lib vendor)
+    NECESSARY_FOLDERS = %w(data lib)
 
     # Returns the filepath, basename, and directory name of the sketch.
     def get_main_file(file)
