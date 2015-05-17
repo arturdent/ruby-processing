@@ -38,11 +38,11 @@ module Processing
     include Math
     include HelperMethods
     # Alias some methods for familiarity for Shoes coders.
-    # attr_accessor :frame, :title
-    alias_method :oval, :ellipse
-    alias_method :stroke_width, :stroke_weight
-    alias_method :rgb, :color
-    alias_method :gray, :color
+    shoes = %i(oval stroke_width rgb gray)
+    processing = %i(ellipse stroke_weight color color)
+    shoes.zip(processing).each do |meth, alia| 
+      alias_method meth, alia
+    end
 
     def sketch_class
       self.class.sketch_class
